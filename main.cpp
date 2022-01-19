@@ -50,11 +50,11 @@ void Fading()
   for (int i = 0; i < NUM_LEDS; i++)
     if (btnBrightness[i] > 0)
     {
-      
+
       leds[i].red = fadeColor.r * btnBrightness[i] / 100;
       leds[i].green = fadeColor.g * btnBrightness[i] / 100;
       leds[i].blue = fadeColor.b * btnBrightness[i] / 100;
-      
+
       btnBrightness[i]--;
       FastLED.show();
     }
@@ -65,6 +65,7 @@ void Rainbow()
   static uint8_t hue = 0;
   fill_rainbow(&(leds[0]), NUM_LEDS, hue);
   hue++;
+  FastLED.show();
 }
 
 void loop()
@@ -73,8 +74,8 @@ void loop()
   if (now - lastTime > periodMs)
   {
     lastTime = now;
-    Fading();
-    //Rainbow();
+    //Fading();
+    Rainbow();
   }
 
   if (btns[BTN_A].is(Pressed) || btns[BTN_A].is(Clamped))
